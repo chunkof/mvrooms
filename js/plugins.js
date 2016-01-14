@@ -3,5 +3,6 @@
 var $plugins =
 [
 {"name":"Yami_SkipTitle","status":true,"description":"テストプレイ用にタイトルシーンを飛ばすことができます。","parameters":{}},
+{"name":"chunkof_AudioAlert","status":true,"description":"WebAudio非対応ブラウザで開かれた場合「警告表示」「音声なしでプレイ続行」を行います。","parameters":{"displayAlert":"false"}},
 {"name":"chunkof_Rooms","status":true,"description":"","parameters":{}}
 ];
