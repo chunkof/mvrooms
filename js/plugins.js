@@ -4,5 +4,6 @@ var $plugins =
 [
 {"name":"Yami_SkipTitle","status":true,"description":"テストプレイ用にタイトルシーンを飛ばすことができます。","parameters":{}},
 {"name":"chunkof_AudioAlert","status":true,"description":"WebAudio非対応ブラウザで開かれた場合「警告表示」「音声なしでプレイ続行」を行います。","parameters":{"displayAlert":"false"}},
+{"name":"TDDP_PreloadManager","status":true,"description":"1.1.1 Preload resources on scene/map load as well as game startup for a smoother gameplay experience.          id:TDDP_PreloadManager","parameters":{"Preload On Map Load":"false","Preload System Music":"false","Preload System SFX":"false","Print Debug to Console":"false"}},
 {"name":"chunkof_Rooms","status":true,"description":"","parameters":{}}
 ];

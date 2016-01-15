@@ -17,6 +17,13 @@
     _DataManager_setupNewGame.call(this);
   };
 
+  var __DataManager_setupNewGame = DataManager.setupNewGame;
+  DataManager.setupNewGame = function(){
+    __DataManager_setupNewGame.call(this);
+    // スイッチ1をONに。
+    $gameSwitches.setValue(1, true);
+  };
+
   //--------------------
   var getQueryVariable = function(variable){
     var query = window.location.search.substring(1);
@@ -50,4 +57,19 @@
 
     return escaped;
   };
+
+  Scene_Gameover.prototype.gotoTitle = function() {
+    DataManager.setupNewGame();
+    SceneManager.goto(Scene_Map);
+  };
+
+  //------------------------------
+  // Pre Load
+  //------------------------------
+  TDDP.bootPreloadImages = {
+    picture: [
+      "copyright"
+    ]
+  }
+
 })();
