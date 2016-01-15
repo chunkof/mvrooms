@@ -1,3 +1,4 @@
+// author chunkof (http://chunkof.net/)
 (function() {
 
   //--------------------
@@ -8,36 +9,45 @@
     if (startMapId) {
       $dataSystem.startMapId = Number(startMapId);
     }
+    startMapId = getQueryVariable('room');
+    if (startMapId) {
+      $dataSystem.startMapId = Number(startMapId);
+    }
 
     _DataManager_setupNewGame.call(this);
   };
 
   //--------------------
-  var getQueryVariable = function(variable) {
+  var getQueryVariable = function(variable){
     var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i=0;i<vars.length;i++) {
-      var pair = vars[i].split("=");
-      if (pair[0] == variable) {
-        return escapeJsHTML(pair[1]);
+    var params = query.split("&");
+    for (var i=0; i<params.length; ++i){
+      var pair = params[i].split("=");
+      var key = decodeURIComponent(pair[0]);
+      if (key != variable){
+        continue;
       }
+      var value = decodeURIComponent(pair[1]);
+      return escapeJsHTML(value);
     }
     return undefined;
   };
 
   //--------------------
-  // escape
-  // http://qiita.com/hrdaya/items/4beebbdb57009b405d2d
+  // escape (to preventing xss)
   var escapeJsHTML = function (str) {
-    return str
-      .replace(/\\/g, '\\\\')
-      .replace(/'/g, "\\'")
-      .replace(/"/g, '\\"')
-      .replace(/\//g, '\\/')
-      .replace(/</g, '\\x3c')
-      .replace(/>/g, '\\x3e')
-      .replace(/(0x0D)/g, '\r')
-      .replace(/(0x0A)/g, '\n')
-      .replace(/&/g, '&amp;');
+    var escaped =
+      str
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"')
+        .replace(/\//g, '\\/')
+        .replace(/</g, '\\x3c')
+        .replace(/>/g, '\\x3e')
+        .replace(/(0x0D)/g, '\r')
+        .replace(/(0x0A)/g, '\n')
+        .replace(/&/g, '&amp;');
+
+    return escaped;
   };
 })();
